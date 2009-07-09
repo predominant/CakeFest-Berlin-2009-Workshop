@@ -21,9 +21,9 @@ class Post extends AppModel {
 		$this->data['Post']['user_id'] = '4a55e6f7-8b84-4974-8479-100fa77796a8';
 		return true;
 	}
-	public function afterSave($data, $created = true) {
+	public function afterSave($created = true) {
 		$this->Tweet->save(array(
-			'status' => $data[$this->alias]['text']
+			'status' => $this->data[$this->alias]['text']
 		));
 	}
 }
