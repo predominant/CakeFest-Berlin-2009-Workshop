@@ -77,7 +77,11 @@
  *
  */
 class DATABASE_CONFIG {
-
+/**
+ * Default datasource
+ * 
+ * @var array
+ */
 	var $default = array(
 		'driver' => 'mysql',
 		'persistent' => false,
@@ -87,13 +91,21 @@ class DATABASE_CONFIG {
 		'database' => 'cakefestworking',
 		'prefix' => '',
 	);
-	
+/**
+ * Twitter datasource
+ * 
+ * @var array
+ */
 	var $twitter = array(
 		'datasource' => 'twitter',
-		'login' => 'cakefestwk09',
-		'password' => 'sekrit',
+		'login' => 'username',
+		'password' => 'password',
 	);
-
+/**
+ * Testing datasource
+ * 
+ * @var array
+ */
 	var $test = array(
 		'driver' => 'mysql',
 		'persistent' => false,
