@@ -26,6 +26,8 @@
  * @lastmodified  $Date: 2008-12-19 13:16:01 +1100 (Fri, 19 Dec 2008) $
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
+
+	Router::parseExtensions('rss');
 /**
  * Here, we are connecting '/' (base path) to controller called 'Pages',
  * its action called 'display', and we pass a param to select the view file

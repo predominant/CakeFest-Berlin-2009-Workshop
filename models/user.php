@@ -4,8 +4,19 @@ class User extends AppModel {
 	public $validate = array(
 		'username' => array(
 			'notEmpty',
-			'shouldNotMatchController'
-		)
+			array('rule' => 'shouldNotMatchController')
+		),
+		'email' => array(
+			array(
+				'rule' => 'isUnique',
+				'on' => 'create'
+			),
+		),
+		// Example "terms and conditions" validation rule
+//		'agree_to_terms' => array(
+//			'rule' => 'notEmpty',
+//			'on' => 'create'
+//		)
 	);
 	
 	public function shouldNotMatchController($field) {

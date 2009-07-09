@@ -5,6 +5,7 @@ class Post extends AppModel {
 			'counterCache' => true,
 		)
 	);
+	public $hasOne = array('Tweet');
 	public $validate = array(
 		'text' => array(
 			'required' => 'notEmpty',
@@ -13,13 +14,17 @@ class Post extends AppModel {
 			)
 		)
 	);
-	public function add($data) {
-		if (!empty($data[$this->alias][$this->primaryKey])) {
-			unset($data[$this->alias][$this->primaryKey]);
+	public function beforeSave() {
+		if (!empty($this->data[$this->alias][$this->primaryKey])) {
+			unset($this->data[$this->alias][$this->primaryKey]);
 		}
-		$this->create();
-		$data['Post']['user_id'] = '4a55e6f7-8b84-4974-8479-100fa77796a8';
-		return $this->save($data) !== false;
+		$this->data['Post']['user_id'] = '4a55e6f7-8b84-4974-8479-100fa77796a8';
+		return true;
+	}
+	public function afterSave($data, $created = true) {
+		$this->Tweet->save(array(
+			'status' => $data[$this->alias]['text']
+		));
 	}
 }
 ?>

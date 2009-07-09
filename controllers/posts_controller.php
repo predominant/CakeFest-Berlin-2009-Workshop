@@ -1,25 +1,31 @@
 <?php
 class PostsController extends AppController {
-	public $helpers = array('Paginator');
+	public $components = array('RequestHandler');
+	public $helpers = array('Paginator', 'Text');
+	public $paginate = array(
+		'Post' => array(
+			'limit' => 2,
+			'order' => array('Post.created' => 'DESC'),
+			'recursive' => -1
+		)
+	);
 	public function beforeFilter() {
 		parent::beforeFilter();
-		
 		// Ensure that the 'add' action is accessed after a POST request only.
 		$this->Security->requirePost('add');
 	}
 	public function home() {
 	}
 	public function index() {
-		$this->paginate['Post'] = array(
-			'limit' => 2,
-			'order' => array('Post.created' => 'DESC')
-		);
+		if ($this->RequestHandler->prefers('rss')) {
+			$this->paginate['Posts']['limit'] = 10;
+		}
 		$posts = $this->paginate('Post');
 		$this->set(compact('posts'));
 	}
 	public function add() {
 		if (!empty($this->data)) {
-			if ($this->Post->add($this->data)) {
+			if ($this->Post->save($this->data)) {
 				$this->Session->setFlash(__('Your post has been saved.', true));
 				$this->redirect(array('controller' => 'posts', 'action' => 'index'));
 			} else {
@@ -30,7 +36,8 @@ class PostsController extends AppController {
 	}
 	public function view($id) {
 		$post = $this->Post->find('first', array(
-			'conditions' => array('Post.id' => $id)
+			'conditions' => array('Post.id' => $id),
+			'recursive' => -1
 		));
 		$this->set(compact('post'));
 	}

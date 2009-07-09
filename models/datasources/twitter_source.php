@@ -30,9 +30,6 @@ class TwitterSource extends DataSource {
 		);
 		parent::__construct($config);
 	}
-	public function fullTableName($model) {
-		return $model->name;
-	}
 	public function listSources() {
 		return array('tweets');
 	}
@@ -58,7 +55,11 @@ class TwitterSource extends DataSource {
 		$data = array_combine($fields, $values);
 		$result = $this->connection->post('/statuses/update.json', $data);
 		$result = json_decode($result, true);
-		return isset($result['id']) && is_numeric($result['id']);
+		if (isset($result['id']) && is_numeric($result['id'])) {
+			$model->setInsertId($result['id']);
+			return true;
+		}
+		return false;
 	}
 	public function describe($model) {
 		return $this->_schema['tweets'];

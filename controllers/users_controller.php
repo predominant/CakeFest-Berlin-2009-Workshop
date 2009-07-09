@@ -9,6 +9,13 @@ class UsersController extends AppController {
 			$this->User->save($this->data);
 		}
 	}
+	// Example Admin Add function
+//	public function admin_add() {
+//		if (!empty($this->data)) {
+//			// Suppress validation
+//			$this->User->save($this->data, false);
+//		}
+//	}
 	public function view() {
 		$user = $this->User->findByUsername($this->params['username']);
 		$this->set(compact('user'));
