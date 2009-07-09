@@ -1,0 +1,2 @@
+2009-07-09 19:10:51 Warning: Warning (512): Method HtmlHelper::javascript does not exist in [CORE/CakePHP 1.2.x.x/cake/libs/view/helper.php, line 143]
+2009-07-09 19:41:03 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/predominant/Documents/workspace/CakePHP 1.2.x.x/cake/basics.php:108) in [CORE/CakePHP 1.2.x.x/cake/libs/controller/controller.php, line 640]
