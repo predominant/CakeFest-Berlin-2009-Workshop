@@ -30,7 +30,7 @@ class PostsController extends AppController {
 	}
 	public function view($id) {
 		$post = $this->Post->find('first', array(
-			'conditions' => array('id' => $id)
+			'conditions' => array('Post.id' => $id)
 		));
 		$this->set(compact('post'));
 	}

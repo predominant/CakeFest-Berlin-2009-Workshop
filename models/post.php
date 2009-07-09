@@ -1,5 +1,10 @@
 <?php
 class Post extends AppModel {
+	public $belongsTo = array(
+		'User' => array(
+			'counterCache' => true,
+		)
+	);
 	public $validate = array(
 		'text' => array(
 			'required' => 'notEmpty',
@@ -13,6 +18,7 @@ class Post extends AppModel {
 			unset($data[$this->alias][$this->primaryKey]);
 		}
 		$this->create();
+		$data['Post']['user_id'] = '4a55e6f7-8b84-4974-8479-100fa77796a8';
 		return $this->save($data) !== false;
 	}
 }

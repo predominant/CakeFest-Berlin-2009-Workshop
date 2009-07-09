@@ -44,4 +44,24 @@
 			'id' => $UUID
 		)
 	);
+	
+	$controllers = array_map(
+		array('Inflector', 'underscore'),
+		Configure::listObjects('controller')
+	);
+	
+	Router::connect(
+		'/:controller',
+		array(),
+		array(
+			'controller' => join('|', $controllers)
+		)
+	);
+	
+	Router::connect('/:username',
+		array('controller' => 'users', 'action' => 'view'),
+		array(
+			'pass', array('username')
+		)
+	);
 ?>
