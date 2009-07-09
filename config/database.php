@@ -87,6 +87,12 @@ class DATABASE_CONFIG {
 		'database' => 'cakefestworking',
 		'prefix' => '',
 	);
+	
+	var $twitter = array(
+		'datasource' => 'twitter',
+		'login' => 'cakefestwk09',
+		'password' => 'sekrit',
+	);
 
 	var $test = array(
 		'driver' => 'mysql',

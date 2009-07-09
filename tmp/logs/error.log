@@ -3,3 +3,7 @@
 2009-07-09 22:46:29 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1052: Column 'id' in where clause is ambiguous</span> in [CORE/CakePHP 1.2.x.x/cake/libs/model/datasources/dbo_source.php, line 525]
 2009-07-09 22:47:06 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Post.user_id' in 'on clause'</span> in [CORE/CakePHP 1.2.x.x/cake/libs/model/datasources/dbo_source.php, line 525]
 2009-07-09 23:23:32 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1062: Duplicate entry 'users' for key 2</span> in [CORE/CakePHP 1.2.x.x/cake/libs/model/datasources/dbo_source.php, line 525]
+2009-07-09 23:28:36 Error: Fatal Error (256): ConnectionManager::getDataSource - Non-existent data source twitter in [CORE/CakePHP 1.2.x.x/cake/libs/model/connection_manager.php, line 109]
+2009-07-09 23:30:09 Error: Fatal Error (256): Unable to load DataSource file twitter_source.php in [CORE/CakePHP 1.2.x.x/cake/libs/model/connection_manager.php, line 179]
+2009-07-09 23:49:09 Warning: Warning (2): Invalid argument supplied for foreach() in [APP/models/datasources/twitter_source.php, line 27]
+2009-07-09 23:51:40 Warning: Warning (2): Invalid argument supplied for foreach() in [APP/views/tweets/index.ctp, line 1]
