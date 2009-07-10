@@ -40,9 +40,9 @@
 		</div>
 		<div id="content">
 			<?php
-				$session->flash();
-				$session->flash('auth');
-				echo $content_for_layout;
+			$session->flash();
+			$session->flash('auth');
+			echo $content_for_layout;
 			?>
 		</div>
 		<div id="footer">

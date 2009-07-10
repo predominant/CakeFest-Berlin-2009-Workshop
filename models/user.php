@@ -30,6 +30,10 @@ class User extends AppModel {
 				'on' => 'create'
 			),
 		),
+		'password' => array(
+			'rule' => 'checkPassword',
+			'on' => 'create'
+		)
 		// Example "terms and conditions" validation rule
 //		'agree_to_terms' => array(
 //			'rule' => 'notEmpty',
@@ -43,6 +47,9 @@ class User extends AppModel {
 			return current($field) . ' is an illegal username';
 		}
 		return true;
+	}
+	public function checkPassword($field) {
+		return current($field) == $this->data['User']['confirm_password'];
 	}
 }
 ?>

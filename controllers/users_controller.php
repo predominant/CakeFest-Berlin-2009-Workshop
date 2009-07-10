@@ -18,12 +18,20 @@
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 class UsersController extends AppController {
+	public $components = array('Auth');
+	public function beforeFilter() {
+		$this->Auth->authorize = false;
+		$this->Auth->allow('add');
+	}
 	public function index() {
 		$users = $this->User->find('all');
 		$this->set(compact('users'));
 	}
 	public function add() {
 		if (!empty($this->data)) {
+			$this->data['User']['confirm_password'] = $this->Auth->password(
+				$this->data['User']['confirm_password']
+			);
 			$this->User->save($this->data);
 		}
 	}
@@ -34,6 +42,11 @@ class UsersController extends AppController {
 //			$this->User->save($this->data, false);
 //		}
 //	}
+	public function login() {
+	}
+	public function logout() {
+		$this->redirect($this->Auth->logout());
+	}
 	public function view() {
 		$user = $this->User->findByUsername($this->params['username']);
 		$this->set(compact('user'));

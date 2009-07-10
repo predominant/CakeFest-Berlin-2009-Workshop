@@ -18,8 +18,9 @@
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 echo $form->create();
-echo $form->input('email');
-echo $form->input('username');
-echo $form->input('password');
+//echo $form->input('email');
+//echo $form->input('username');
+//echo $form->input('password');
+echo $form->inputs(array('username', 'email', 'password', 'confirm_password' => array('type' => 'password')));
 echo $form->end('Add');
 ?>
