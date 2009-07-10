@@ -27,12 +27,12 @@ class ArticlesController extends AppController {
 	}
 
 	function index() {
-		ClassRegistry::init('RobotTask')->schedule(
-			'/articles/send',
-			array(
-				'hello' => 'world'
-			)
-		);
+//		ClassRegistry::init('RobotTask')->schedule(
+//			'/articles/send',
+//			array(
+//				'hello' => 'world'
+//			)
+//		);
 		$this->Article->recursive = 0;
 		$this->set('articles', $this->paginate());
 	}

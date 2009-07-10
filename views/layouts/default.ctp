@@ -40,6 +40,15 @@
 		</div>
 		<div id="content">
 			<?php
+			$languages = array('eng' => 'English', 'spa' => 'Spanish');
+			foreach ($languages as $code => $language) {
+				$url = Router::parse(Router::url());
+				$url = array_diff_key($url, array_flip(array('url', 'ext', 'lang', 'pass', 'named')));
+				$url['lang'] = $code;
+				$links[] = $html->link($language, $url);
+			}
+			echo join(' - ', $links);
+			
 			$session->flash();
 			$session->flash('auth');
 			echo $content_for_layout;

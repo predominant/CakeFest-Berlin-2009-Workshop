@@ -18,14 +18,15 @@
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 class AppController extends Controller {
-	public $components = array('Acl', 'Auth', 'Security', 'Session', 'OpenId');
+	//public $components = array('Acl', 'Auth', 'Security', 'Session', 'OpenId');
+	public $components = array('Security', 'Session', 'OpenId');
 	public $helpers = array('Form', 'Html', 'Javascript', 'Session');
-	public function beforeFilter() {
-		$this->Auth->authorized = 'crud';
-		$this->Auth->mapActions(array(
-			'read' => array('display')
-		));
-	}
+//	public function beforeFilter() {
+//		$this->Auth->authorized = 'crud';
+//		$this->Auth->mapActions(array(
+//			'read' => array('display')
+//		));
+//	}
 	public function redirect($url) {
 //		echo 'Redirect Attempted';
 //		debug($url);

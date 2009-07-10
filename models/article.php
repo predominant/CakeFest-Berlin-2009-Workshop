@@ -24,6 +24,8 @@ class Article extends AppModel {
 		'title' => array('notempty'),
 		'text' => array('notempty')
 	);
-
+	public function translations($id = null, $locales = null) {
+		// TODO: Import Mariano's Code
+	}
 }
 ?>
