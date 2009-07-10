@@ -18,12 +18,24 @@
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 class UsersController extends AppController {
-	public $components = array('Auth');
 	public function beforeFilter() {
-		$this->Auth->authorize = false;
+//		$this->Auth->authorize = false;
 		$this->Auth->allow('add');
+		
+//		if (isset($this->params['admin']) && $this->params['admin'] === true) {
+//			$user = $this->Auth->user();
+//			if ($user['User']['role'] != 'admin') {
+//				$this->cakeError();
+//			}
+//		}
+
+		parent::beforeFilter();
 	}
 	public function index() {
+		$users = $this->User->find('all');
+		$this->set(compact('users'));
+	}
+	public function admin_index() {
 		$users = $this->User->find('all');
 		$this->set(compact('users'));
 	}
@@ -43,6 +55,11 @@ class UsersController extends AppController {
 //		}
 //	}
 	public function login() {
+		if (!empty($this->data) && !empty($this->data['User']['open_id_url'])) {
+			$this->_authenticateOpenId($this->data['User']['open_id_url']);
+		} elseif ($this->OpenId->hasResponse()) {
+			$this->_handleOpenIdAuth();
+		}
 	}
 	public function logout() {
 		$this->redirect($this->Auth->logout());

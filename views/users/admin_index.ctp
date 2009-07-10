@@ -1,6 +1,6 @@
 <?php
 /**
- * Add User View
+ * Admin Index Users View
  *
  * Description.
  *
@@ -17,15 +17,11 @@
  * @link          http://cakephp.org CakePHP(tm) Project
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
-echo $form->create();
-//echo $form->input('email');
-//echo $form->input('username');
-//echo $form->input('password');
-echo $form->inputs(array(
-	'username',
-	'email',
-	'password',
-	'confirm_password' => array('type' => 'password'),
-	'open_id_url'));
-echo $form->end('Add');
 ?>
+<ul>
+	<?php foreach ($users as $user): ?>
+		<li><?php echo $user['User']['email']; ?> -
+		<?php echo $user['User']['username']; ?> -
+		(<?php echo $user['User']['posts_count']; ?>)</li>
+	<?php endforeach; ?>
+</ul>

@@ -41,6 +41,8 @@ class User extends AppModel {
 //		)
 	);
 	
+	public $actsAs = array('Acl' => 'requester');
+	
 	public function shouldNotMatchController($field) {
 		$controllers = Configure::listObjects('controller');
 		if (in_array(current($field), $controllers)) {
@@ -50,6 +52,16 @@ class User extends AppModel {
 	}
 	public function checkPassword($field) {
 		return current($field) == $this->data['User']['confirm_password'];
+	}
+	
+	public function parentNode($object) {
+		return null;
+	}
+	
+	public function bindNode($object) {
+		if (isset($object['User']['role'])) {
+			return 'Roles/' . $object['User']['role'];
+		}
 	}
 }
 ?>
