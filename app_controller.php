@@ -27,6 +27,12 @@ class AppController extends Controller {
 //			'read' => array('display')
 //		));
 //	}
+	public function beforeRender() {
+		if ($this->RequestHandler->ext == 'json') {
+			// Disable debug to allow json resonses to be generated correctly.
+			Configure::write('debug', 0);
+		}
+	}
 	public function redirect($url) {
 //		echo 'Redirect Attempted';
 //		debug($url);
