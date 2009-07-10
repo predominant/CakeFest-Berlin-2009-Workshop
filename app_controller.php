@@ -19,7 +19,7 @@
  */
 class AppController extends Controller {
 	//public $components = array('Acl', 'Auth', 'Security', 'Session', 'OpenId');
-	public $components = array('Security', 'Session', 'OpenId');
+	public $components = array('DebugKit.Toolbar', 'Security', 'Session', 'OpenId');
 	public $helpers = array('Form', 'Html', 'Javascript', 'Session');
 //	public function beforeFilter() {
 //		$this->Auth->authorized = 'crud';
