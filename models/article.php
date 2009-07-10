@@ -19,8 +19,8 @@
  */
 class Article extends AppModel {
 
-	var $name = 'Article';
-	var $validate = array(
+	public $name = 'Article';
+	public $validate = array(
 		'title' => array('notempty'),
 		'text' => array('notempty')
 	);

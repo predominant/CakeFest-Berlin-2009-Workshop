@@ -14,15 +14,25 @@
  *
  * @filesource
  * @copyright     Copyright 2009, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
+ * @link	  http://cakephp.org CakePHP(tm) Project
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 class ArticlesController extends AppController {
-
-	var $name = 'Articles';
-	var $helpers = array('Html', 'Form');
+	public $name = 'Articles';
+	public $helpers = array('Html', 'Form');
+	
+	public function send() {
+		debug($this->params);
+		exit;
+	}
 
 	function index() {
+		ClassRegistry::init('RobotTask')->schedule(
+			'/articles/send',
+			array(
+				'hello' => 'world'
+			)
+		);
 		$this->Article->recursive = 0;
 		$this->set('articles', $this->paginate());
 	}
@@ -75,6 +85,5 @@ class ArticlesController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-
 }
 ?>
